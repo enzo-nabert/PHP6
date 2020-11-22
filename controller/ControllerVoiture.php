@@ -32,11 +32,7 @@ class ControllerVoiture {
     public static function created(){
         $voiture = new ModelVoiture($_GET);
         if ($voiture->save() == false){
-            $error = "Voiture déjà créée";
-            $pagetitle = "Erreur";
-            $controller = 'voiture';
-            $view = 'error';
-            require File::build_path(array('view','view.php'));
+            self::error("voiture déjà créée");
         }else {
             require File::build_path(array('view','voiture','created.php'));
             ControllerVoiture::readAll();
@@ -47,5 +43,13 @@ class ControllerVoiture {
         $voiture = ModelVoiture::getVoitureByImmat($_GET['immat']);
         $voiture->delete();
         self::readAll();
+    }
+
+    public static function error($message){
+        $error = $message;
+        $pagetitle = "Erreur";
+        $controller = 'voiture';
+        $view = 'error';
+        require File::build_path(array('view','view.php'));
     }
 }

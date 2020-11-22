@@ -6,11 +6,7 @@ if (isset($_GET['action'])) {
         $action = $_GET['action'];
         ControllerVoiture::$action();
     }else{
-        $error = "action non définie";
-        $controller = 'voiture';
-        $view = 'error';
-        $pageTitle = 'Erreur';
-        require File::build_path(array('view','view.php'));
+        ControllerVoiture::error("action non définie");
     }
 }else{
     ControllerVoiture::readAll();
