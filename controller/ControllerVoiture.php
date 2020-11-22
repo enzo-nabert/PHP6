@@ -40,9 +40,15 @@ class ControllerVoiture {
     }
 
     public static function delete(){
-        $voiture = ModelVoiture::getVoitureByImmat($_GET['immat']);
-        $voiture->delete();
-        self::readAll();
+        if (isset($_GET["immat"])) {
+            ModelVoiture::deleteByImmat($_GET["immat"]);
+            $pagetitle = "Delete Voitures";
+            $controller = 'voiture';
+            $view = 'deleted';
+            require File::build_path(array('view','view.php'));
+        }else{
+            self::error("immat non définie");
+        }
     }
 
     public static function error($message){

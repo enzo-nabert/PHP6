@@ -91,11 +91,12 @@ class ModelVoiture {
       return true;
   }
 
-  public function delete(){
+  public static function deleteByImmat($immat){
       $sql = "DELETE FROM voiture WHERE immatriculation = :immat";
       $pdo = Model::$pdo;
       $req = $pdo->prepare($sql);
-      $values = array('immat' => $this->immatriculation);
+      $htmlSpecialImmat = htmlspecialchars($immat);
+      $values = array('immat' => $htmlSpecialImmat);
       $req->execute($values);
   }
 }
