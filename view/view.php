@@ -8,7 +8,7 @@
 <body>
     <header>
         <nav>
-            <a href="index.php?action=readAll">Liste Voiture</a>
+            <a href="index.php?action=readAll&controller=voiture">Liste Voiture</a>
             <a href="index.php?action=readAll&controller=utilisateur">Accueil Utilisateur</a>
             <a href="index.php?action=readAll&controller=trajet">Accueil Trajet</a>
             <a href="index.php?action=create">Créer Voiture</a>
