@@ -4,7 +4,6 @@ require_once File::build_path(array('controller','ControllerVoiture.php'));
 require_once File::build_path(array('controller','ControllerUtilisateur.php'));
 if (isset($_GET['action'])) {
     $controller_class = "Controller" . ucfirst($_GET['controller']);
-    echo $controller_class;
     if (class_exists($controller_class)) {
         if (in_array($_GET['action'],get_class_methods($controller_class))) {
             $action = $_GET['action'];

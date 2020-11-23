@@ -2,7 +2,7 @@
 require_once File::build_path(array('model','ModelVoiture.php')); // chargement du modèle
 class ControllerVoiture {
     public static function readAll() {
-        $tab_v = ModelVoiture::getAllVoitures();
+        $tab_v = ModelVoiture::selectAll();
         $pagetitle = "Liste des Voitures";
         $controller = 'voiture';
         $view = 'list';

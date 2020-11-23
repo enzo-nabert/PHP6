@@ -22,7 +22,7 @@
     </main>
     <footer>
         <p>
-            Site de covoiturage de ...
+            Site de covoiturage de NABERT ENZO
         </p>
     </footer>
 

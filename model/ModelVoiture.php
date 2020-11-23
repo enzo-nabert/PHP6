@@ -7,7 +7,17 @@ class ModelVoiture extends Model{
   private $couleur;
   private $immatriculation;
   private $debug = true;
+  protected static $object = "voiture";
 
+
+    public function __construct($data = array())  {
+        foreach ($data as $key => $value){
+            if($key != 'action') {
+                $this->$key = $value;
+            }
+        }
+
+    }
   // getters
   public function get($attribut){
       return $this->$attribut;
@@ -31,12 +41,12 @@ class ModelVoiture extends Model{
 
   }
 
-  public static function getAllVoitures(){
-      $pdo = Model::$pdo;
-      $rep = $pdo->query("SELECT * FROM voiture");
-      $rep->setFetchMode(PDO::FETCH_CLASS,'ModelVoiture');
-      return $rep->fetchAll();
-  }
+//  public static function getAllVoitures(){
+//      $pdo = Model::$pdo;
+//      $rep = $pdo->query("SELECT * FROM voiture");
+//      $rep->setFetchMode(PDO::FETCH_CLASS,'ModelVoiture');
+//      return $rep->fetchAll();
+//  }
 
   public static function getVoitureByImmat($immat) {
       $sql = "SELECT * from voiture WHERE immatriculation=:nom_tag";

@@ -5,7 +5,7 @@ class ControllerUtilisateur
 {
     public static function readAll()
     {
-        $tab_u = ModelUtilisateur::getAllUtilisateurs();
+        $tab_u = ModelUtilisateur::selectAll();
         $pagetitle = "Liste des Utilisateurs";
         $controller = 'utilisateur';
         $view = 'list';
