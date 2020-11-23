@@ -46,10 +46,10 @@ class ControllerVoiture {
     }
 
     public static function updated(){
-        $voiture = ModelVoiture::getVoitureByImmat($_GET['immatriculation']);
         $htmlSpecialMarque = htmlspecialchars($_GET['marque']);
         $htmlSpecialCouleur = htmlspecialchars($_GET['couleur']);
-        $voiture->update($htmlSpecialMarque,$htmlSpecialCouleur);
+        $htmlSpecialImmat = htmlspecialchars($_GET['immatriculation']);
+        ModelVoiture::update(array('immatriculation' => $htmlSpecialImmat, 'marque' => $htmlSpecialMarque, 'couleur' => $htmlSpecialCouleur));
         $pagetitle = "Modifier Voitures";
         $controller = 'voiture';
         $view = 'updated';
