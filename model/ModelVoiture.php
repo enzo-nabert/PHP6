@@ -91,6 +91,17 @@ class ModelVoiture {
       return true;
   }
 
+  public function update($m,$c){
+      echo "je suis là";
+      $pdo = Model::$pdo;
+      $sql = "UPDATE Voiture SET marque = '$m' , couleur = '$c' WHERE immatriculation = '$this->immatriculation'";
+
+      $req = $pdo->prepare($sql);
+//      $values = array('m' => '$m','c' => '$c','i' => '$this->immatriculation');
+//      $req->execute($values);
+      $req->execute();
+  }
+
   public static function deleteByImmat($immat){
       $sql = "DELETE FROM voiture WHERE immatriculation = :immat";
       $pdo = Model::$pdo;

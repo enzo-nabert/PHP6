@@ -35,8 +35,25 @@ class ControllerVoiture {
             self::error("voiture déjà créée");
         }else {
             require File::build_path(array('view','voiture','created.php'));
-            ControllerVoiture::readAll();
         }
+    }
+
+    public static function update(){
+        $pagetitle = "Modifier Voitures";
+        $controller = 'voiture';
+        $view = 'update';
+        require File::build_path(array('view','view.php'));
+    }
+
+    public static function updated(){
+        $voiture = ModelVoiture::getVoitureByImmat($_GET['immatriculation']);
+        $htmlSpecialMarque = htmlspecialchars($_GET['marque']);
+        $htmlSpecialCouleur = htmlspecialchars($_GET['couleur']);
+        $voiture->update($htmlSpecialMarque,$htmlSpecialCouleur);
+        $pagetitle = "Modifier Voitures";
+        $controller = 'voiture';
+        $view = 'updated';
+        require File::build_path(array('view','view.php'));
     }
 
     public static function delete(){

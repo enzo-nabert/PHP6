@@ -53,6 +53,14 @@ main a{
     border-color: #f00;
 }
 
+.updateButton:hover{
+    background-color: rgba(0,255,0,0.5);
+}
+
+.updateButton{
+    color: #0f0;
+    border-color: #0f0;
+}
 nav a:hover{
     background-color: rgba(0,0,0,0.5);
 }
