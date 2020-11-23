@@ -28,6 +28,23 @@ class Model{
 
         }
 
+    public function __construct($data = array())  {
+        foreach ($data as $key => $value){
+            if($key != 'action') {
+                $this->$key = $value;
+            }
+        }
+
+    }
+
+    public function get($attribut){
+        return $this->$attribut;
+    }
+
+    public function set($attribut,$valeur){
+        $this->$attribut = $valeur;
+    }
+
 
 }
 Model::Init();

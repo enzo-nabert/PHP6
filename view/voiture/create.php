@@ -9,6 +9,7 @@
             <label for="couleur_id">Couleur</label>
             <input type="text" name="couleur" id="couleur_id" required/>
             <input type='hidden' name='action' value='created'>
+            <input type='hidden' name="controller" value="voiture">
         </p>
         <p>
             <input type="submit" value="Envoyer"/>
