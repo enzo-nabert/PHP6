@@ -41,13 +41,4 @@ class ModelUtilisateur extends Model
         return true;
     }
 
-    public static function update($data){
-        echo "je suis là";
-        $pdo = Model::$pdo;
-        $sql = "UPDATE Utilisateur SET login = :login , prenom = :prenom WHERE login = :login";
-
-        $req = $pdo->prepare($sql);
-        $req->execute($data);
-    }
-
 }

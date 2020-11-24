@@ -58,15 +58,6 @@ class ModelVoiture extends Model{
       return true;
   }
 
-  public static function update($data){
-      echo "je suis là";
-      $pdo = Model::$pdo;
-      $sql = "UPDATE Voiture SET marque = :marque , couleur = :couleur WHERE immatriculation = :immatriculation";
-
-      $req = $pdo->prepare($sql);
-      $req->execute($data);
-  }
-
 
 }
 ?>

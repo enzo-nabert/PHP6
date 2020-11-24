@@ -66,5 +66,21 @@ class Model{
         $values = array('pk' => $htmlSpecialPK);
         $req->execute($values);
     }
+
+    public static function update($data){
+        $table_name = static::$object;
+        $primary_key = static::$primary;
+        $pdo = Model::$pdo;
+        $sql = "UPDATE $table_name ";
+        $sql_set = "SET ";
+        $sql_where = " WHERE $primary_key = :$primary_key";
+        foreach ($data as $key => $valeur) {
+            $sql_set = $sql_set . "$key = :$key,";
+        }
+        $sql_set = rtrim($sql_set,",");
+        $sql = $sql . $sql_set . $sql_where;
+        $req = $pdo->prepare($sql);
+        $req->execute($data);
+    }
 }
 Model::Init();
