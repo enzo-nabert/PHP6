@@ -23,7 +23,7 @@ class ControllerVoiture {
 
     public static function create(){
         $pagetitle = "Créer Voitures";
-        $view = 'create';
+        $view = 'update';
         require File::build_path(array('view','view.php'));
     }
 
@@ -56,7 +56,7 @@ class ControllerVoiture {
 
     public static function delete(){
         if (isset($_GET["immat"])) {
-            ModelVoiture::deleteByImmat($_GET["immat"]);
+            ModelVoiture::delete($_GET["immat"]);
             $pagetitle = "Delete Voitures";
             $view = 'deleted';
             require File::build_path(array('view','view.php'));
