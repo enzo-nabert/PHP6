@@ -1,18 +1,17 @@
 <?php
 require_once File::build_path(array('model','ModelVoiture.php')); // chargement du modèle
 class ControllerVoiture {
+    protected static $object = 'voiture';
     public static function readAll() {
         $tab_v = ModelVoiture::selectAll();
         $pagetitle = "Liste des Voitures";
-        $controller = 'voiture';
         $view = 'list';
         require File::build_path(array('view','view.php'));
     }
 
     public static function read(){
-        $v = ModelVoiture::getVoitureByImmat($_GET['immat']);
+        $v = ModelVoiture::select($_GET['immat']);
         $pagetitle = "Détail Voitures";
-        $controller = 'voiture';
         if ($v != null){
             $view = 'detail';
         }else{
@@ -24,7 +23,6 @@ class ControllerVoiture {
 
     public static function create(){
         $pagetitle = "Créer Voitures";
-        $controller = 'voiture';
         $view = 'create';
         require File::build_path(array('view','view.php'));
     }
@@ -41,7 +39,6 @@ class ControllerVoiture {
 
     public static function update(){
         $pagetitle = "Modifier Voitures";
-        $controller = 'voiture';
         $view = 'update';
         require File::build_path(array('view','view.php'));
     }
@@ -52,7 +49,6 @@ class ControllerVoiture {
         $htmlSpecialImmat = htmlspecialchars($_GET['immatriculation']);
         ModelVoiture::update(array('immatriculation' => $htmlSpecialImmat, 'marque' => $htmlSpecialMarque, 'couleur' => $htmlSpecialCouleur));
         $pagetitle = "Modifier Voitures";
-        $controller = 'voiture';
         $view = 'updated';
         require File::build_path(array('view','view.php'));
         self::readAll();
@@ -62,7 +58,6 @@ class ControllerVoiture {
         if (isset($_GET["immat"])) {
             ModelVoiture::deleteByImmat($_GET["immat"]);
             $pagetitle = "Delete Voitures";
-            $controller = 'voiture';
             $view = 'deleted';
             require File::build_path(array('view','view.php'));
         }else{
@@ -71,9 +66,7 @@ class ControllerVoiture {
     }
 
     public static function error($message){
-        $error = $message;
         $pagetitle = "Erreur";
-        $controller = 'voiture';
         $view = 'error';
         require File::build_path(array('view','view.php'));
     }

@@ -7,6 +7,7 @@ class ModelUtilisateur extends Model
     private $nom;
     private $prenom;
     protected static $object = "utilisateur";
+    protected static $primary = "login";
 
     public function __construct($data = array())  {
         foreach ($data as $key => $value){
@@ -24,12 +25,5 @@ class ModelUtilisateur extends Model
     public function set($attribut,$valeur){
         $this->$attribut = $valeur;
     }
-
-//    public static function getAllUtilisateurs(){
-//        $pdo = Model::$pdo;
-//        $rep = $pdo->query("SELECT * FROM utilisateur");
-//        $rep->setFetchMode(PDO::FETCH_CLASS,'ModelUtilisateur');
-//        return $rep->fetchAll();
-//    }
 
 }

@@ -8,6 +8,7 @@ class ModelVoiture extends Model{
   private $immatriculation;
   private $debug = true;
   protected static $object = "voiture";
+  protected static $primary = "immatriculation";
 
 
     public function __construct($data = array())  {
@@ -41,32 +42,6 @@ class ModelVoiture extends Model{
 
   }
 
-//  public static function getAllVoitures(){
-//      $pdo = Model::$pdo;
-//      $rep = $pdo->query("SELECT * FROM voiture");
-//      $rep->setFetchMode(PDO::FETCH_CLASS,'ModelVoiture');
-//      return $rep->fetchAll();
-//  }
-
-  public static function getVoitureByImmat($immat) {
-      $sql = "SELECT * from voiture WHERE immatriculation=:nom_tag";
-      // Préparation de la requête
-      $req_prep = Model::$pdo->prepare($sql);
-      $values = array(
-          "nom_tag" => $immat,
-          //nomdutag => valeur, ...
-      );
-      // On donne les valeurs et on exécute la requête
-      $req_prep->execute($values);
-
-      // On récupère les résultats comme précédemment
-      $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelVoiture');
-      $tab_voit = $req_prep->fetchAll();
-      // Attention, si il n'y a pas de résultats, on renvoie false
-      if (empty($tab_voit))
-          return false;
-      return $tab_voit[0];
-  }
 
   public function save()
   {
@@ -92,13 +67,6 @@ class ModelVoiture extends Model{
       $req->execute($data);
   }
 
-  public static function deleteByImmat($immat){
-      $sql = "DELETE FROM voiture WHERE immatriculation = :immat";
-      $pdo = Model::$pdo;
-      $req = $pdo->prepare($sql);
-      $htmlSpecialImmat = htmlspecialchars($immat);
-      $values = array('immat' => $htmlSpecialImmat);
-      $req->execute($values);
-  }
+
 }
 ?>

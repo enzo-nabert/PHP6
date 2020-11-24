@@ -28,6 +28,23 @@ class Model{
 
     }
 
+    public static function select($primary_value) {
+        $nom_table = static::$object;
+        $class_name = "Model" . ucfirst($nom_table);
+        $primary_key = static::$primary;
+        $sql = "SELECT * from $nom_table WHERE $primary_key=:nom_tag";
+        $req_prep = Model::$pdo->prepare($sql);
+        $values = array(
+            "nom_tag" => $primary_value,
+        );
+        $req_prep->execute($values);
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        $tab = $req_prep->fetchAll();
+        if (empty($tab))
+            return false;
+        return $tab[0];
+    }
+
     public static function selectAll(){
         $table_name = static::$object;
         $class_name = "Model" . ucfirst($table_name);
@@ -36,6 +53,18 @@ class Model{
         $rep = $pdo->query("SELECT * FROM $table_name");
         $rep->setFetchMode(PDO::FETCH_CLASS,$class_name);
         return $rep->fetchAll();
+    }
+
+    public static function delete($primary){
+        $nom_table = static::$object;
+        $primary_key = static::$primary;
+
+        $sql = "DELETE FROM $nom_table WHERE $primary_key = :pk";
+        $pdo = Model::$pdo;
+        $req = $pdo->prepare($sql);
+        $htmlSpecialPK = htmlspecialchars($primary);
+        $values = array('pk' => $htmlSpecialPK);
+        $req->execute($values);
     }
 }
 Model::Init();
