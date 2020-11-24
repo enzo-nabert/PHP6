@@ -26,19 +26,6 @@ class ModelUtilisateur extends Model
         $this->$attribut = $valeur;
     }
 
-    public function save()
-    {
-        try {
-            $sql = "INSERT INTO utilisateur VALUES('$this->login','$this->nom','$this->prenom')";
-            $pdo = Model::$pdo;
-            $req = $pdo->prepare($sql);
-            $req->execute();
-        }catch(PDOException $e){
-            if ($e->getCode() == '23000'){
-                return false;
-            }
-        }
-        return true;
-    }
+
 
 }

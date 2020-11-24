@@ -29,7 +29,7 @@ class ControllerVoiture {
 
     public static function created(){
         $voiture = new ModelVoiture($_GET);
-        if ($voiture->save() == false){
+        if ($voiture->save(array("immatriculation" => $voiture->get("immatriculation"),"marque" => $voiture->get("marque"),"couleur" => $voiture->get("couleur"))) == false){
             self::error("voiture déjà créée");
         }else {
             require File::build_path(array('view','voiture','created.php'));
@@ -46,7 +46,8 @@ class ControllerVoiture {
         $htmlSpecialMarque = htmlspecialchars($_GET['marque']);
         $htmlSpecialCouleur = htmlspecialchars($_GET['couleur']);
         $htmlSpecialImmat = htmlspecialchars($_GET['immatriculation']);
-        ModelVoiture::update(array('immatriculation' => $htmlSpecialImmat, 'marque' => $htmlSpecialMarque, 'couleur' => $htmlSpecialCouleur));
+        $voiture = ModelVoiture::select($htmlSpecialImmat);
+        $voiture->update(array('immatriculation' => $htmlSpecialImmat, 'marque' => $htmlSpecialMarque, 'couleur' => $htmlSpecialCouleur));
         $pagetitle = "Modifier Voitures";
         $view = 'updated';
         require File::build_path(array('view','view.php'));

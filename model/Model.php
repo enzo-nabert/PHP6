@@ -67,7 +67,7 @@ class Model{
         $req->execute($values);
     }
 
-    public static function update($data){
+    public function update($data){
         $table_name = static::$object;
         $primary_key = static::$primary;
         $pdo = Model::$pdo;
@@ -81,6 +81,29 @@ class Model{
         $sql = $sql . $sql_set . $sql_where;
         $req = $pdo->prepare($sql);
         $req->execute($data);
+    }
+
+    public function save($data)
+    {
+        try {
+            $table_name = static::$object;
+
+            $sql = "INSERT INTO $table_name ";
+            $sql_values = "VALUES(";
+            $pdo = Model::$pdo;
+            foreach ($data as $key => $valeur) {
+                $sql_values = $sql_values . ":$key,";
+            }
+            $sql_values = rtrim($sql_values,",");
+            $sql = $sql . $sql_values . ")";
+            $req = $pdo->prepare($sql);
+            $req->execute($data);
+        }catch(PDOException $e){
+            if ($e->getCode() == '23000'){
+                return false;
+            }
+        }
+        return true;
     }
 }
 Model::Init();

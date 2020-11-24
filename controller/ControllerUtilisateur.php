@@ -31,7 +31,7 @@ class ControllerUtilisateur
 
     public static function created(){
         $utilisateur = new ModelUtilisateur($_GET);
-        if ($utilisateur->save() == false){
+        if ($utilisateur->save(array("login" => $utilisateur->get("login"),"nom" => $utilisateur->get("nom"),"prenom" => $utilisateur->get("prenom"))) == false){
             self::error("utilisateur déjà créé");
         }else {
             $pagetitle = "Modifier Utilisateur";
@@ -50,7 +50,8 @@ class ControllerUtilisateur
         $htmlSpecialNom = htmlspecialchars($_GET['nom']);
         $htmlSpecialPrenom = htmlspecialchars($_GET['prenom']);
         $htmlSpecialLogin = htmlspecialchars($_GET['login']);
-        ModelUtilisateur::update(array('login' => $htmlSpecialLogin, 'nom' => $htmlSpecialNom, 'prenom' => $htmlSpecialPrenom));
+        $utilisateur = ModelUtilisateur::select($htmlSpecialLogin);
+        $utilisateur->update(array('login' => $htmlSpecialLogin, 'nom' => $htmlSpecialNom, 'prenom' => $htmlSpecialPrenom));
         $pagetitle = "Modifier Utilisateur";
         $view = 'updated';
         require File::build_path(array('view','view.php'));

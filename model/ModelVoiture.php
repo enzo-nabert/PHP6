@@ -41,23 +41,5 @@ class ModelVoiture extends Model{
     }
 
   }
-
-
-  public function save()
-  {
-      try {
-          $sql = "INSERT INTO voiture VALUES('$this->immatriculation','$this->marque','$this->couleur')";
-          $pdo = Model::$pdo;
-          $req = $pdo->prepare($sql);
-          $req->execute();
-      }catch(PDOException $e){
-          if ($e->getCode() == '23000'){
-              return false;
-          }
-      }
-      return true;
-  }
-
-
 }
 ?>
