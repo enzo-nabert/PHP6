@@ -9,9 +9,10 @@
     <header>
         <nav>
             <a href="index.php?action=readAll&controller=voiture">Liste Voiture</a>
-            <a href="index.php?action=readAll&controller=utilisateur">Accueil Utilisateur</a>
-            <a href="index.php?action=readAll&controller=trajet">Accueil Trajet</a>
+            <a href="index.php?action=readAll&controller=utilisateur">Liste Utilisateur</a>
+            <a href="index.php?action=readAll&controller=trajet">Liste Trajet</a>
             <a href="index.php?action=create&controller=voiture">Créer Voiture</a>
+            <a href="index.php?action=create&controller=utilisateur">Créer Utilisateur</a>
         </nav>
     </header>
     <main>

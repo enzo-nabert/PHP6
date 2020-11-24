@@ -33,7 +33,6 @@ class ControllerVoiture {
             self::error("voiture déjà créée");
         }else {
             require File::build_path(array('view','voiture','created.php'));
-            self::readAll();
         }
     }
 
@@ -51,7 +50,6 @@ class ControllerVoiture {
         $pagetitle = "Modifier Voitures";
         $view = 'updated';
         require File::build_path(array('view','view.php'));
-        self::readAll();
     }
 
     public static function delete(){

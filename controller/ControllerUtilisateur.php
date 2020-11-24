@@ -23,6 +23,39 @@ class ControllerUtilisateur
         require File::build_path(array('view','view.php'));
     }
 
+    public static function create(){
+        $pagetitle = "Créer Utilisateur";
+        $view = 'update';
+        require File::build_path(array('view','view.php'));
+    }
+
+    public static function created(){
+        $utilisateur = new ModelUtilisateur($_GET);
+        if ($utilisateur->save() == false){
+            self::error("utilisateur déjà créé");
+        }else {
+            $pagetitle = "Modifier Utilisateur";
+            $view = 'created';
+            require File::build_path(array('view','view.php'));
+        }
+    }
+
+    public static function update(){
+        $pagetitle = "Modifier Utilisateur";
+        $view = 'update';
+        require File::build_path(array('view','view.php'));
+    }
+
+    public static function updated(){
+        $htmlSpecialNom = htmlspecialchars($_GET['nom']);
+        $htmlSpecialPrenom = htmlspecialchars($_GET['prenom']);
+        $htmlSpecialLogin = htmlspecialchars($_GET['login']);
+        ModelUtilisateur::update(array('login' => $htmlSpecialLogin, 'nom' => $htmlSpecialNom, 'prenom' => $htmlSpecialPrenom));
+        $pagetitle = "Modifier Utilisateur";
+        $view = 'updated';
+        require File::build_path(array('view','view.php'));
+    }
+
     public static function delete(){
         if (isset($_GET["login"])) {
             ModelUtilisateur::delete($_GET["login"]);
