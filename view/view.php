@@ -13,6 +13,7 @@
             <a href="index.php?action=readAll&controller=trajet">Liste Trajet</a>
             <a href="index.php?action=create&controller=voiture">Créer Voiture</a>
             <a href="index.php?action=create&controller=utilisateur">Créer Utilisateur</a>
+            <a href="index.php?action=create&controller=trajet">Créer Trajet</a>
         </nav>
     </header>
     <main>

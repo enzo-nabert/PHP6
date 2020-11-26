@@ -19,27 +19,15 @@ class ModelVoiture extends Model{
         }
 
     }
+
   // getters
   public function get($attribut){
       return $this->$attribut;
   }
 
   //setters
-  public function setMarque($marque2) {
-    $this->marque = $marque2;
-  }
-
-  public function setCouleur($couleur2){
-    $this->couleur = $couleur2;
-  }
-
-  public function setImmatriculation($immatriculation2){
-    if (strlen($immatriculation2) <= 8) {
-      $this->immatriculation = $immatriculation2;
-    }else{
-      $this->immatriculation = "erreur trop long";
-    }
-
+  public function set($attribut,$valeur){
+        $this->$attribut = $valeur;
   }
 }
 ?>
